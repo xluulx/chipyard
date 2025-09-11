@@ -193,6 +193,7 @@ cd "$RDIR"
             generators/radiance \
             generators/rocket-chip \
 	    generators/saturn \
+            generators/sdc_renewal\
             generators/tacit \
             sims/firesim \
             software/nvdla-workload \
