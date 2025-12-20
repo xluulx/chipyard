@@ -60,6 +60,7 @@ ENABLE_SATURN=0
 ENABLE_FFT=0
 ENABLE_RADIANCE=0
 ENABLE_GEMMINI=0
+ENABLE_SDC=0
 ENABLE_NVDLA=0
 ENABLE_CVA6=0
 ENABLE_SODOR=0
@@ -89,6 +90,7 @@ do
             ENABLE_FFT=1
             ENABLE_RADIANCE=1
             ENABLE_GEMMINI=1
+            ENABLE_SDC=1
             ENABLE_NVDLA=1
             ENABLE_TACIT=1
 	    ;;
@@ -116,6 +118,9 @@ do
 	--gemmini)
 	    ENABLE_GEMMINI=1
 	    ;;
+    --sdc)
+        ENABLE_SDC=1
+        ;;
 	--nvdla)
 	    ENABLE_NVDLA=1
 	    ;;
@@ -293,6 +298,11 @@ cd "$RDIR"
         submodule_name="generators/gemmini"
         git submodule update --init generators/gemmini || exit 1
         git -C generators/gemmini/ submodule update --init --recursive software/gemmini-rocc-tests || exit 1
+    fi
+
+    if [[ "$ENABLE_SDC" -eq 1 ]] ; then
+        submodule_name="generators/sdc_renewal"
+        git submodule update --init generators/sdc_renewal || exit 1
     fi
 
     # Non-recursive clone
